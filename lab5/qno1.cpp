@@ -32,19 +32,15 @@ public:
 };
 void List ::insertAtBeginning(int value)
 {
-    if (head == NULL)
-    {
-        Node *temp = new Node;
-        head = temp;
-        last = temp;
-        temp->data = value;
-        temp->next = temp->previous = NULL;
-        return;
-    }
     Node *temp = new Node;
     temp->data = value;
     temp->previous = NULL;
     temp->next = head;
+    if (head == NULL)
+    {
+        head = last = temp;
+        return;
+    }
     head->previous = temp;
     head = temp;
 }
@@ -147,6 +143,11 @@ void List ::deleteAfter(int after)
         deleteAtEnd();
         return;
     }
+    if (after == last->data)
+    {
+        cout <<"There is no element after "<<after<<endl;
+        return;
+    }
     Node *iter = head;
     while (iter->data != after)
     {
@@ -164,6 +165,11 @@ void List ::deleteAfter(int after)
 }
 void List ::insertBefore(int value, int before)
 {
+    if (head == NULL)
+    {
+        cout <<"The list is empty."<<endl;
+        return;
+    }
     if (before == head->data) // if an element is to be inserted before head
     {
         // inserting an element before head is same as inserting an element at the very beginning
@@ -193,11 +199,17 @@ void List ::deleteBefore(int before)
         cout << "Invalid operation 'delete before'. The list is empty." << endl;
         return;
     }
+    if (before == head->data)
+    {
+        cout <<"There is no element before "<<before<<endl;
+        return;
+    }
     if (before == (head->next)->data) // if a node before the second node is to be deleted, the operation is same as deleting at beginning
     {
         deleteAtBeginning();
         return;
     }
+
     Node *iter = head;
     while (iter->data != before)
     {
@@ -256,6 +268,7 @@ int main()
             cout << "Enter the number to insert at beginning." << endl;
             cin >> num;
             list.insertAtBeginning(num);
+            list.displayData();
             break;
         case 2:
             cout << "Enter the number you would like to insert." << endl;
@@ -263,6 +276,7 @@ int main()
             cout << "Enter the number before which you would like to insert the entered number." << endl;
             cin >> before;
             list.insertBefore(num, before);
+            list.displayData();
             break;
         case 3:
             cout << "Enter the number you would like to insert." << endl;
@@ -270,27 +284,34 @@ int main()
             cout << "Enter the number after which you would like to insert the entered number." << endl;
             cin >> after;
             list.insertAfter(num, after);
+            list.displayData();
             break;
         case 4:
             cout << "Enter the number to insert at end." << endl;
             cin >> num;
             list.insertAtEnd(num);
+            list.displayData();
             break;
         case 5:
             list.deleteAtBeginning();
+            list.displayData();
             break;
+
         case 6:
             cout << "Enter the value before which you would like to delete." << endl;
             cin >> before;
             list.deleteBefore(before);
+            list.displayData();
             break;
         case 7:
             cout << "Enter the value after which you would like to delete." << endl;
             cin >> after;
             list.deleteAfter(after);
+            list.displayData();
             break;
         case 8:
             list.deleteAtEnd();
+            list.displayData();
             break;
         case 9:
             list.displayData();
