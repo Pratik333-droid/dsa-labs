@@ -1,4 +1,5 @@
-// doubly non circular linked lists
+// doubly linked lists (linear)
+
 #include <iostream>
 using namespace std;
 
