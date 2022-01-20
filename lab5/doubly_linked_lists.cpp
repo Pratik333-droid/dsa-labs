@@ -37,7 +37,7 @@ void List ::insertAtBeginning(int value)
     temp->data = value;
     temp->previous = NULL;
     temp->next = head;
-    if (head == NULL)
+    if (head == NULL) //if 
     {
         head = last = temp;
         return;
