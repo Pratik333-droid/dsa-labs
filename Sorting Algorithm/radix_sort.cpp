@@ -9,7 +9,7 @@ const int arr_size = 10;
 void displayArray(int num[])
 {
     for (int i = 0; i<arr_size; i++)
-    cout <<num[i]<<"  ";
+    cout <<num[i]<<",  ";
     cout <<endl;
 }
 
@@ -58,20 +58,20 @@ void radixSort(int num[arr_size], int max)
         div = pow(10, power); //pow(10,2 ) computed to be 99 for some reason. So was compelled to do this.
         if (div%9 == 0)
         div+=1;
-        cout <<"for j = "<<j<<" div = "<<div<<endl;
+        // cout <<"for j = "<<j<<" div = "<<div<<endl;
         counter=-1; //this keeps track of index in array where sorted element after each pass is stored
         for (int i =0; i<arr_size; i++)
         {
             
             pos = 0;
             base = (num[i]/div)% 10; // this calculates place value on each pass. for 1st pass place value = 1, for 2nd pass, place value = 10
-            cout <<"num["<<i<<"] = "<<num[i]<<" and base = "<<base<<endl;
+            // cout <<"num["<<i<<"] = "<<num[i]<<" and base = "<<base<<endl;
             while (array[base][pos]!=garbage)
             {
                 pos++;
             }
             array[base][pos] = num[i];
-            cout <<"array["<<base<<"]["<<pos<<"] = "<<num[i]<<endl;
+            // cout <<"array["<<base<<"]["<<pos<<"] = "<<num[i]<<endl;
 
         }
         for (int i = 0; i<arr_size; i++) //now that, one pass is completed so the sorted data (for a given place value)
